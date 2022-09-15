@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 onCalculatorButtonClick = (pointerEvent) => {
-    if(pointerEvent.target.innterText){
-
+    if(pointerEvent.target.innterText != '='){
+        
     }
 }
