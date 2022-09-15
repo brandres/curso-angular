@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let buttonsContainer = document.getElementById('buttons-container');
         let button = document.createElement('button');
         button.type = 'button';
-        button.className = 'btn btn-primary p-0 w-25 mx-auto';
+        button.className = 'btn btn-primary';
         button.innerText = label;
         button.onclick = onCalculatorButtonClick;
         buttonsContainer.appendChild(button);
