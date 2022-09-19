@@ -8,12 +8,12 @@ export class Lavadora extends Electrodomestico {
         super(...args);
         this.carga = carga;
     }
-    
+
     getCarga(){
         return this.carga;
     }
 
     precioFinal (){
-        return super.precioFinal() + (this.carga > 30 ? 50 : 0);
+        return super.precioFinal() + (this.carga > 30 && 50);
     }
 }
