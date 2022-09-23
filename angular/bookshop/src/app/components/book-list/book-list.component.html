@@ -1,0 +1,6 @@
+<div class="list-group">
+  <button type="button" class="list-group-item list-group-item-action" aria-current="false" *ngFor="let book of books" (click)="onListClick(book)" [ngClass]="{'active': book.id === selected?.id}">
+    {{book.title}}
+  </button>
+</div>
+<button class="btn btn-danger" (click)="onDeleteClick()">Delete</button>
