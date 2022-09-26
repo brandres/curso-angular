@@ -4,11 +4,21 @@ const dbConfig = require("./app/config/db.config");
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
 
-app.use(cors(corsOptions));
+// Set up CORS
+app.use(cors({
+  origin: true, // "true" will copy the domain of the request back
+                // to the reply. If you need more control than this
+                // use a function.
+
+  credentials: true, // This MUST be "true" if your endpoint is
+                     // authenticated via either a session cookie
+                     // or Authorization header. Otherwise the
+                     // browser will block the response.
+
+  methods: 'POST,GET,PUT,OPTIONS,DELETE' // Make sure you're not blocking
+                                         // pre-flight OPTIONS requests
+}));
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -43,7 +53,7 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 9090;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
