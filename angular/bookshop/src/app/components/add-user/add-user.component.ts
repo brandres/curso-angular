@@ -1,6 +1,8 @@
-import { FormBuilder } from '@angular/forms';
+import { UserForm } from './../../models/user.model';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-add-user',
@@ -9,12 +11,13 @@ import { User } from 'src/app/models/user.model';
 })
 export class AddUserComponent implements OnInit {
 
-  userForm = this.formBuilder.group<User>({
-    email:'',
-    password:''
+  userForm = this.formBuilder.group<UserForm>({
+    email: new FormControl('', [Validators.required, Validators.minLength(4), Validators.email]),
+    username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
 
-  constructor( private formBuilder : FormBuilder) { }
+  constructor( private formBuilder : FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +26,7 @@ export class AddUserComponent implements OnInit {
   onSubmit(): void {
     // Process checkout data here
     console.log(this.userForm);
-    this.userService.addBook(this.userForm.value as User);
-
+    this.userService.addUser(this.userForm.value as User);
+    this.userForm.reset();
   }
 }

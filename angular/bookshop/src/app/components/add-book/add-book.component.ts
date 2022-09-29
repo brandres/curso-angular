@@ -24,6 +24,7 @@ export class AddBookComponent implements OnInit {
     // Process checkout data here
     console.log(this.bookForm);
     this.bookService.addBook(this.bookForm.value as Book);
+    this.bookForm.reset();
 
   }
 }
